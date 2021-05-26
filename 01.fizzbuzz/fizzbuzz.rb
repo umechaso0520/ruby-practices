@@ -12,4 +12,3 @@ while number <= 20 do
   end
   number += 1
 end
-
