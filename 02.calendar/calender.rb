@@ -12,37 +12,16 @@ month = options["m"].to_i
 #月初と月末の値を取得し日数を求める
 start = Date.new(year,month,1)
 finish = Date.new(year,month,-1)
-period = (finish - start + 1).to_i
-
-#日付を格納する配列
-dates = []
-
-#periodを使って必要な日付を取得しdatesに格納する
-period.times do
-  dates.push(start)
-  start += 1
-end
 
 #カレンダー上部表示
 month_year = "       #{month.to_s}月 #{year.to_s}    "
 day_of_the_week = " 日 月 火 水 木 金 土"
 puts month_year
 puts day_of_the_week
-print "   " * dates[0].wday
+print "   " * start.wday
 
 #カレンダー表示
-dates.each do |date|
-  if date.saturday? == false
-		if date.day < 10
-    	print "  " + date.day.to_s
-		else
-			print " " + date.day.to_s
-		end
-	else
-		if date.day < 10
-    	puts "  " + date.day.to_s
-		else
-		puts " " + date.day.to_s
-		end
-	end
+(start..finish).each do |date|
+  print date.day.to_s.rjust(3)
+	print "\n" if date.saturday? == true
 end
