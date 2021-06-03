@@ -23,5 +23,5 @@ print "   " * start.wday
 # カレンダー表示
 (start..finish).each do |date|
   print date.day.to_s.rjust(3)
-	print "\n" if date.saturday? == true
+  print "\n" if date.saturday? == true
 end
