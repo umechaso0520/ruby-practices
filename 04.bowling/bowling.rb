@@ -50,5 +50,4 @@ frames.each_with_index do |frame, index|
              frame.sum
            end
 end
-
 puts point
