@@ -51,7 +51,8 @@ when '-a'
   files = Dir.glob(['.*', '*']).sort
   show_files(files)
 when '-l'
-  do_loption
+  files = Dir.glob(['*']).sort.reverse
+  do_loption(files)
 when '-r'
   files = Dir.glob(['*']).sort.reverse
   show_files(files)
