@@ -14,7 +14,6 @@ def do_loption(files)
     print "#{Etc.getpwuid(file_info.uid).name}  "
     print "#{Etc.getgrgid(file_info.gid).name}  "
     print "#{file_info.size}  "
-    print "#{file_info.size}  "
     t = file_info.birthtime
     print "#{t.month}月  "
     print "#{t.day}  "
