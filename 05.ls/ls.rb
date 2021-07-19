@@ -26,7 +26,7 @@ end
 
 def do_loption(files)
   mode_hash = { 7 => 'rwx', 6 => 'rw-', 5 => 'r-x', 4 => 'r--', 3 => '-wx', 2 => '-w-', 1 => '--x', 0 => '---' }
-  files.sort.each do |file|
+  files.each do |file|
     file_info = File::Stat.new(file)
     print file_info.ftype[0]
     3.times { |n| print mode_hash[file_info.mode.to_s(8)[2, 3][n].to_i] }
