@@ -4,6 +4,26 @@
 require 'optparse'
 require 'fileutils'
 
+def main
+  case ARGV[0]
+  when '-a'
+    files = Dir.glob(['.*', '*']).sort
+    show_files(files)
+  when '-l'
+    files = Dir.glob(['*']).sort.reverse
+    do_loption(files)
+  when '-r'
+    files = Dir.glob(['*']).sort.reverse
+    show_files(files)
+  when /[alr][alr][alr]/
+    files = Dir.glob(['.*', '*']).sort.reverse
+    do_loption(files)
+  when nil
+    files = Dir.glob(['*']).sort
+    show_files(files)
+  end
+end
+
 def do_loption(files)
   mode_hash = { 7 => 'rwx', 6 => 'rw-', 5 => 'r-x', 4 => 'r--', 3 => '-wx', 2 => '-w-', 1 => '--x', 0 => '---' }
   files.sort.each do |file|
@@ -45,20 +65,4 @@ def show_files(files)
   end
 end
 
-case ARGV[0]
-when '-a'
-  files = Dir.glob(['.*', '*']).sort
-  show_files(files)
-when '-l'
-  files = Dir.glob(['*']).sort.reverse
-  do_loption(files)
-when '-r'
-  files = Dir.glob(['*']).sort.reverse
-  show_files(files)
-when /[alr][alr][alr]/
-  files = Dir.glob(['.*', '*']).sort.reverse
-  do_loption(files)
-when nil
-  files = Dir.glob(['*']).sort
-  show_files(files)
-end
+main
