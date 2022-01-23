@@ -3,7 +3,6 @@
 
 require 'optparse'
 FOLDBACK = 3
-opt = ARGV.getopts('a')
 
 def show_file_names(file_names)
   line_count = (file_names.size.to_f / FOLDBACK).ceil
@@ -17,10 +16,10 @@ def show_file_names(file_names)
   end
 end
 
-if opt['a'] == true
-  all_file_names = Dir.glob('*', File::FNM_DOTMATCH).sort
-  show_file_names(all_file_names)
-else
-  file_names = Dir.glob('*').sort
-  show_file_names(file_names)
-end
+opt = ARGV.getopts('a')
+file_names = if opt['a']
+               Dir.glob('*', File::FNM_DOTMATCH).sort
+             else
+               Dir.glob('*').sort
+             end
+show_file_names(file_names)
