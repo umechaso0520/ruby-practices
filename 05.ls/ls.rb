@@ -16,10 +16,11 @@ def show_file_names(file_names)
   end
 end
 
-opt = ARGV.getopts('a')
-file_names = if opt['a']
-               Dir.glob('*', File::FNM_DOTMATCH).sort
-             else
-               Dir.glob('*').sort
-             end
+opt = ARGV.getopts('r')
+file_names =
+  if opt['r']
+    Dir.glob('*').sort.reverse
+  else
+    Dir.glob('*').sort
+  end
 show_file_names(file_names)
